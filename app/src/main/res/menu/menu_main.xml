@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/account"
+        android:title="Account"/>
+    <item
+        android:id="@+id/faultyhistory"
+        android:title="Faulty History" />
+    <item
+        android:id="@+id/logfaulty"
+        android:title="Log Faulty" />
+    <item
+        android:id="@+id/pendingfault"
+        android:title="Pending Fault" />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings" />
+    <item
+        android:id="@+id/signout"
+        android:title="Signout" />
+
+</menu>
