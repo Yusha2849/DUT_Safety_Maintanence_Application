@@ -7,23 +7,25 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="270dp"
-    android:background="@color/white"
+    android:background="@drawable/background_login"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:src="@drawable/loginavatar"
+        android:paddingTop="30dp"
+        android:src="@drawable/dut_user"
         android:adjustViewBounds="true" />
 
     <TextView
         android:id="@+id/registrationMessageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to DUT Faulty Management System"
-        android:textSize="20sp"
+        android:text="@string/login_to_your_account"
+        android:textSize="30sp"
+        android:fontFamily="@font/bebasneue_regular"
+        android:letterSpacing="0.2"
         android:textColor="@android:color/black"
         android:layout_marginTop="16dp"
         android:layout_gravity="center"/>
@@ -34,13 +36,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="Email"
+            android:fontFamily="@font/poppins_regular"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,14 +54,17 @@
         android:id="@+id/loginpasswordlabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:fontFamily="@font/poppins_regular"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,10 +76,12 @@
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/loginButton"
-        android:layout_width="140dp"
+        android:id="@+id/getStartedButton"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Log In"
+        app:backgroundTint="@color/button_purple"
+        android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="16dp"/>
 
@@ -83,7 +93,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:textSize="15dp"
-        android:text="Don't have an account? Login"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Don't have an account? Sign up."
         android:textColor="@color/black"
         android:clickable="true"
         android:textAppearance="?android:textAppearanceSmall"
@@ -94,12 +105,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:paddingTop="90dp"
+        android:paddingTop="0dp"
         android:textSize="15dp"
         android:text="Powered by DUT Safety and Rescue"
         android:textColor="@color/black"
         android:clickable="true"
         android:textAppearance="?android:textAppearanceSmall"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_regular"/>
 
 </LinearLayout>

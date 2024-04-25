@@ -7,15 +7,15 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="125dp"
-    android:background="@color/white"
+    android:background="@drawable/background_main"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/dutlogo"
+        android:layout_height="300dp"
+        android:paddingTop="50dp"
+        android:src="@drawable/logo"
         android:adjustViewBounds="true" />
 
     <TextView
@@ -32,7 +32,7 @@
 
     <Button
         android:id="@+id/getStartedButton"
-        android:layout_width="140dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:text="Get Started"
         app:backgroundTint="@color/button_purple"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:paddingTop="130dp"
+        android:paddingTop="150dp"
         android:textSize="15dp"
         android:text="Powered by DUT Safety and Rescue"
         android:fontFamily="@font/poppins_regular"
