@@ -14,7 +14,7 @@
     <ImageView
         android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="200dp"
         android:src="@drawable/dutlogo"
         android:adjustViewBounds="true" />
 
@@ -22,10 +22,12 @@
         android:id="@+id/registrationMessageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to DUT Faulty Management System"
-        android:textSize="20sp"
+        android:text="@string/welcome"
+        android:fontFamily="@font/bebasneue_regular"
+        android:textSize="50sp"
+        android:letterSpacing="0.2"
         android:textColor="@android:color/black"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"/>
 
     <Button
@@ -33,6 +35,8 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:text="Get Started"
+        app:backgroundTint="@color/button_purple"
+        android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="16dp"/>
 
@@ -41,9 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:paddingTop="160dp"
+        android:paddingTop="130dp"
         android:textSize="15dp"
         android:text="Powered by DUT Safety and Rescue"
+        android:fontFamily="@font/poppins_regular"
         android:textColor="@color/black"
         android:clickable="true"
         android:textAppearance="?android:textAppearanceSmall"
