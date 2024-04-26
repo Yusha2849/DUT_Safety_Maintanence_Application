@@ -132,7 +132,7 @@
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/getStartedButton"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:text="Register"
@@ -140,8 +140,6 @@
         android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="16dp"/>
-
-
 
 
     <TextView
