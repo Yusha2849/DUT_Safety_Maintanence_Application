@@ -86,7 +86,19 @@
         android:layout_marginBottom="16dp"/>
 
 
-    <!-- Login TextView -->
+    <TextView
+        android:id="@+id/forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textSize="15dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Forgot password?"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:layout_gravity="center"/>
+
     <TextView
         android:id="@+id/registerTextView"
         android:layout_width="wrap_content"
