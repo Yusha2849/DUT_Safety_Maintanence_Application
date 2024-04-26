@@ -105,6 +105,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Confirm password -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirmlabel"
         android:layout_width="match_parent"
@@ -131,7 +132,7 @@
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/getStartedButton"
+        android:id="@+id/register"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:text="Register"
@@ -141,19 +142,7 @@
         android:layout_marginBottom="16dp"/>
 
 
-    <!-- Login TextView -->
-    <TextView
-        android:id="@+id/registerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:textSize="15dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Don't have an account? Sign up."
-        android:textColor="@color/black"
-        android:clickable="true"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:layout_gravity="center"/>
+
 
     <TextView
         android:id="@+id/sponsored"
