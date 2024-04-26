@@ -22,17 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-
-        LinearLayout layout = (LinearLayout) findViewById(R.id.main); // Replace with your root layout element's id
-
-        GradientDrawable gradientDrawable = new GradientDrawable(
-                GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{Color.parseColor("#90CECE"), Color.parseColor("#42A5FC")});
-        gradientDrawable.setCornerRadius(0); // You can set corner radius if you want
-
-        layout.setBackground(gradientDrawable);
-
-
         gstart = findViewById(R.id.getStartedButton);
 
         gstart.setOnClickListener(new View.OnClickListener() {
