@@ -2,4 +2,5 @@
     <string name="app_name">DUT Maintanence Application</string>
     <string name="welcome">Welcome!</string>
     <string name="login_to_your_account">LOGIN TO YOUR ACCOUNT</string>
+    <string name="forgot_password">Forgot password</string>
 </resources>
