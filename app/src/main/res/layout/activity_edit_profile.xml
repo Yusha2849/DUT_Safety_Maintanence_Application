@@ -5,15 +5,19 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_issuereport">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Profile"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/bebasneue_regular"
+        android:letterSpacing="0.2"
+        android:textColor="@color/black"
         android:layout_gravity="center_horizontal" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -112,6 +116,8 @@
         android:layout_height="wrap_content"
         android:text="Save Profile"
         android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/button_purple"
+        android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="20dp" />
 
 </LinearLayout>
