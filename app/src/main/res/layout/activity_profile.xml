@@ -4,9 +4,11 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:paddingTop="15dp"
     android:layout_height="match_parent"
     android:background="@drawable/background_issuereport">
 
+    <include layout="@layout/hometoolbar"/>
     <ImageView
         android:id="@+id/profile_picture"
         android:layout_width="100dp"
@@ -58,15 +60,6 @@
         android:backgroundTint="@color/button_purple"
         android:text="Edit Profile" />
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:backgroundTint="@color/button_purple"
-        android:text="Logout" />
 
 
 </LinearLayout>

@@ -4,6 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="20dp"
     android:orientation="vertical"
     android:background="@drawable/gradient"
     tools:context=".MainActivity">
@@ -28,7 +29,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/logfault"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
@@ -37,6 +38,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/background_main"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
@@ -72,11 +74,10 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/faulthistory"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
@@ -85,6 +86,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/background_main"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
@@ -118,13 +120,12 @@
                     android:src="@drawable/historyicon" />
 
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/existingfault"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
@@ -133,6 +134,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/background_main"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
@@ -171,7 +173,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/justfault"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"

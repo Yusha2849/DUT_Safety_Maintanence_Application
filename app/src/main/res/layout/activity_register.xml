@@ -10,6 +10,8 @@
     android:background="@drawable/background_register"
     tools:context=".MainActivity">
 
+
+
     <ImageView
         android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
@@ -78,7 +80,7 @@
         android:paddingRight="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/loginemail"
+            android:id="@+id/registeremail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -96,7 +98,7 @@
         android:paddingRight="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/loginpassword"
+            android:id="@+id/registerpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -132,7 +134,7 @@
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/getStartedButton"
+        android:id="@+id/registerButton"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:text="Register"
