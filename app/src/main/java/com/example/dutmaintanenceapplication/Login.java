@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     if (user != null && user.isEmailVerified()) {
                                         Toast.makeText(getApplicationContext(), "Authentication Succeeded", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), report.class);
+                                        Intent intent = new Intent(getApplicationContext(), home.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
