@@ -30,7 +30,7 @@ public class home extends AppCompatActivity {
         existingf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(home.this,FaultQueue.class);
+                Intent intent= new Intent(getApplicationContext(),FaultQueue.class);
                 startActivity(intent);
                 finish();
             }
@@ -49,17 +49,15 @@ public class home extends AppCompatActivity {
                         // Handle menu item clicks
                         int itemId = item.getItemId();
                         if (itemId == R.id.account) {
-                            // Handle menu item 1 click
                             Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), profile.class);
                             startActivity(intent);
                             return true;
                         } else if (itemId == R.id.faulthistory) {
-                            // Handle menu item 2 click
-                            Toast.makeText(getApplicationContext(), "Faulty History", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), ClinicBooking.class);
+                            Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), profile.class);
                             startActivity(intent);
-                            return true;*/
+                            return true;
                         }
                         else if (itemId == R.id.logfaulty) {
                             Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
@@ -67,14 +65,13 @@ public class home extends AppCompatActivity {
                             startActivity(intent);
                             return true;
                         } else if (itemId == R.id.pendingfault) {
-                            // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "My Profile", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+                            Toast.makeText(getApplicationContext(), "Faulty Queue", Toast.LENGTH_SHORT).show();
+                           /* Intent intent = new Intent(getApplicationContext(), FaultQueue.class);
                             startActivity(intent);
                             return true;*/
                         }else if (itemId == R.id.settings) {
                             // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
                             /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
                             startActivity(intent);
                             return true;*/

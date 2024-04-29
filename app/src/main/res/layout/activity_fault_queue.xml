@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_issuereport"
+    android:background="@drawable/gradient2"
     tools:context=".FaultQueue">
 
     <include layout="@layout/hometoolbar"/>
@@ -14,60 +14,65 @@
     <!-- Table headers -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="72dp"
+        android:background="#CCCCCC"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="#CCCCCC">
+        android:padding="16dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
             android:text="Campus"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:gravity="center" />
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
             android:text="Location"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:gravity="center" />
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
             android:text="Block"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:gravity="center" />
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Issue Type"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:gravity="center" />
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Description"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:gravity="center" />
+            android:textSize="13sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- ListView for fault data -->
