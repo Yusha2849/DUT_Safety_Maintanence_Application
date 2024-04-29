@@ -1,45 +1,43 @@
 package com.example.dutmaintanenceapplication;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class home extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class FaultQueue extends AppCompatActivity {
+    private ListView faultTableLayout;
     private ImageView mnu;
-    CardView faultlog, faulthistory,existingf, justf;
+    private ReportDatabaseHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_fault_queue);
 
+        faultTableLayout = findViewById(R.id.faultListView);
         mnu = findViewById(R.id.menu);
-        existingf = findViewById(R.id.existingfault);
+        databaseHelper = new ReportDatabaseHelper(this);
 
-        existingf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(home.this,FaultQueue.class);
-                startActivity(intent);
-                finish();
-            }
-        });
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Create a PopupMenu
-                PopupMenu popupMenu = new PopupMenu(home.this, mnu);
+                PopupMenu popupMenu = new PopupMenu(FaultQueue.this, mnu);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
 
                 // Set item click listener for the menu items
@@ -94,7 +92,46 @@ public class home extends AppCompatActivity {
                 popupMenu.show();
             }
         });
+
+        loadFaults();
     }
+
+    private void loadFaults() {
+        Cursor cursor = databaseHelper.getAllReports();
+        if (cursor.moveToFirst()) {
+            do {
+                String campus = cursor.getString(cursor.getColumnIndexOrThrow("campus"));
+                String location = cursor.getString(cursor.getColumnIndexOrThrow("location"));
+                String block = cursor.getString(cursor.getColumnIndexOrThrow("block"));
+                String issueType = cursor.getString(cursor.getColumnIndexOrThrow("issue_type"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+
+                // Create a new TableRow
+                TableRow row = new TableRow(this);
+
+                // Add TextViews for each column in the TableRow
+                addTextViewToTableRow(row, campus);
+                addTextViewToTableRow(row, location);
+                addTextViewToTableRow(row, block);
+                addTextViewToTableRow(row, issueType);
+                addTextViewToTableRow(row, description);
+
+                // Add the TableRow to the TableLayout
+                faultTableLayout.addView(row);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+    }
+
+    // Method to add a TextView to a TableRow
+    private void addTextViewToTableRow(TableRow row, String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setPadding(16, 8, 16, 8);
+        textView.setGravity(Gravity.CENTER); // Set gravity to center
+        row.addView(textView);
+    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, home.class);
