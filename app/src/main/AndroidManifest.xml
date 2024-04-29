@@ -20,6 +20,15 @@
             android:name=".FaultQueue"
             android:exported="false" />
         <activity
+            android:name=".edit_duty"
+            android:exported="false" />
+        <activity
+            android:name=".duties"
+            android:exported="false" />
+        <activity
+            android:name=".history"
+            android:exported="false" />
+        <activity
             android:name=".home"
             android:exported="false" />
         <activity
