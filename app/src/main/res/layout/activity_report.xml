@@ -7,7 +7,8 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_issuereport">
+    android:paddingTop="15dp"
+    android:background="@drawable/background_register">
 
     <include layout="@layout/hometoolbar"></include>
 
@@ -56,7 +57,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingRight="16dp"
+        app:boxStrokeColor="@color/black"
+        android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/location"
@@ -114,7 +117,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingRight="16dp"
+        app:boxStrokeColor="@color/black"
+        android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/description"

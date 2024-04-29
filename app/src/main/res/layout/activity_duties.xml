@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingTop="15dp"
     android:background="@drawable/gradient2">
 
     <include layout="@layout/hometoolbar"/>
@@ -13,8 +14,8 @@
     <!-- Table headers -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:background="#CCCCCC"
+        android:layout_height="wrap_content"
+        android:background="#d1dbe4"
         android:orientation="horizontal"
         android:padding="16dp">
 
@@ -57,7 +58,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
-            android:text="Issue Type"
+            android:text="Type"
             android:textColor="@android:color/black"
             android:textSize="13sp"
             android:textStyle="bold" />
@@ -66,8 +67,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
             android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
             android:text="Description"
             android:textColor="@android:color/black"
             android:textSize="13sp"
