@@ -4,18 +4,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="20dp"
+    android:paddingTop="30dp"
     android:orientation="vertical"
     android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
-    <!-- ImageView with background image -->
-    <ImageView
-        android:id="@+id/backgroundImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
-    <!--adding hometoolbar at the top -->
     <include layout="@layout/hometoolbar"></include>
 
     <!-- Vertical LinearLayout to contain the two rows of cards -->
@@ -29,7 +22,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/logfault"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
@@ -38,7 +31,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/background_main"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
@@ -53,7 +45,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
                         android:text="Log Fault"
-                        android:textSize="18sp"
+                        android:paddingTop="20dp"
+                        android:layout_gravity="center"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -61,7 +55,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Tap to log new fault"
-                        android:textSize="14sp" />
+                        android:layout_gravity="center"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -74,10 +69,11 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
         <androidx.cardview.widget.CardView
             android:id="@+id/faulthistory"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
@@ -85,8 +81,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_main"
+                android:layout_height="197dp"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
@@ -99,17 +94,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/poppins_semibold"
+                        android:paddingTop="20dp"
                         android:text="Fault History"
-                        android:textSize="18sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Tap to view fault history"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -120,12 +118,13 @@
                     android:src="@drawable/historyicon" />
 
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/existingfault"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
@@ -134,7 +133,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/background_main"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
@@ -147,17 +145,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/poppins_semibold"
                         android:text="Fault in Queue"
-                        android:textSize="18sp"
+                        android:textSize="25sp"
+                        android:paddingTop="20dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Tap to view fault in queue"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -166,53 +167,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/existingicon" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/justfault"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="259dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Just fault"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Tap to view just fault"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/serviceicon" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

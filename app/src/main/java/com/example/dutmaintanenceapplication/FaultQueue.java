@@ -1,71 +1,43 @@
 package com.example.dutmaintanenceapplication;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.material.textfield.TextInputEditText;
 
-public class report extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class FaultQueue extends AppCompatActivity {
+    private ListView faultTableLayout;
     private ImageView mnu;
-    private Spinner campusSpinner, blockSpinner, issueTypeSpinner;
-    private ArrayAdapter<CharSequence> campusAdapter, blockAdapter, issueTypeAdapter;
     private ReportDatabaseHelper databaseHelper;
-    private TextInputEditText locationEditText, descriptionEditText;
-    private Button submitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
-        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_fault_queue);
 
-        // Initialize database helper
-        databaseHelper = new ReportDatabaseHelper(this);
+        faultTableLayout = findViewById(R.id.faultListView);
         mnu = findViewById(R.id.menu);
-        campusSpinner = findViewById(R.id.campusSpinner);
-        blockSpinner = findViewById(R.id.blockTypeSpinner);
-        issueTypeSpinner = findViewById(R.id.issueTypeSpinner);
-        locationEditText = findViewById(R.id.location);
-        descriptionEditText = findViewById(R.id.description);
-        submitButton = findViewById(R.id.submitButton);
-
-        campusAdapter = ArrayAdapter.createFromResource(this,
-                R.array.campus, android.R.layout.simple_spinner_item);
-        blockAdapter = ArrayAdapter.createFromResource(this,
-                R.array.RitsonBlock, android.R.layout.simple_spinner_item);
-        issueTypeAdapter = ArrayAdapter.createFromResource(this,
-                R.array.fault_types_array, android.R.layout.simple_spinner_item);
-
-        campusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        blockAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        issueTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        campusSpinner.setAdapter(campusAdapter);
-        blockSpinner.setAdapter(blockAdapter);
-        issueTypeSpinner.setAdapter(issueTypeAdapter);
-
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveReport();
-            }
-        });
+        databaseHelper = new ReportDatabaseHelper(this);
 
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Create a PopupMenu
-                PopupMenu popupMenu = new PopupMenu(report.this, mnu);
+                PopupMenu popupMenu = new PopupMenu(FaultQueue.this, mnu);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
 
                 // Set item click listener for the menu items
@@ -83,9 +55,9 @@ public class report extends AppCompatActivity {
                         } else if (itemId == R.id.faulthistory) {
                             // Handle menu item 2 click
                             Toast.makeText(getApplicationContext(), "Faulty History", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), ClinicBooking.class);
+                            Intent intent = new Intent(getApplicationContext(), FaultQueue.class);
                             startActivity(intent);
-                            return true;*/
+                            return true;
                         }
                         else if (itemId == R.id.logfaulty) {
                             Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
@@ -94,18 +66,16 @@ public class report extends AppCompatActivity {
                             return true;
                         } else if (itemId == R.id.pendingfault) {
                             // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "My Profile", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+                            Toast.makeText(getApplicationContext(), "Pending Faulty", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), FaultQueue.class);
                             startActivity(intent);
-                            return true;*/
+                            return true;
                         }else if (itemId == R.id.settings) {
-                            // Handle menu item 3 click
                             Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
                             /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
                             startActivity(intent);
                             return true;*/
                         } else if (itemId == R.id.signout) {
-                            // Handle menu item 4 click
                             Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), Login.class);
                             startActivity(intent);
@@ -120,21 +90,51 @@ public class report extends AppCompatActivity {
                 popupMenu.show();
             }
         });
+
+        loadFaults();
     }
 
-    // Method to save report when submit button is clicked
-    private void saveReport() {
-        String campus = campusSpinner.getSelectedItem().toString();
-        String location = locationEditText.getText().toString();
-        String block = blockSpinner.getSelectedItem().toString();
-        String issueType = issueTypeSpinner.getSelectedItem().toString();
-        String description = descriptionEditText.getText().toString();
+    private void loadFaults() {
+        Cursor cursor = databaseHelper.getAllReports();
+        if (cursor.moveToFirst()) {
+            do {
+                String campus = cursor.getString(cursor.getColumnIndexOrThrow("campus"));
+                String location = cursor.getString(cursor.getColumnIndexOrThrow("location"));
+                String block = cursor.getString(cursor.getColumnIndexOrThrow("block"));
+                String issueType = cursor.getString(cursor.getColumnIndexOrThrow("issue_type"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
 
-        long newRowId = databaseHelper.addReport(campus, location, block, issueType, description);
-        if (newRowId != -1) {
-            Toast.makeText(this, "Report submitted successfully", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Failed to submit report", Toast.LENGTH_SHORT).show();
+                // Create a new TableRow
+                TableRow row = new TableRow(this);
+
+                // Add TextViews for each column in the TableRow
+                addTextViewToTableRow(row, campus);
+                addTextViewToTableRow(row, location);
+                addTextViewToTableRow(row, block);
+                addTextViewToTableRow(row, issueType);
+                addTextViewToTableRow(row, description);
+
+                // Add the TableRow to the TableLayout
+                faultTableLayout.addView(row);
+            } while (cursor.moveToNext());
         }
+        cursor.close();
+    }
+
+    // Method to add a TextView to a TableRow
+    private void addTextViewToTableRow(TableRow row, String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setPadding(16, 8, 16, 8);
+        textView.setGravity(Gravity.CENTER); // Set gravity to center
+        row.addView(textView);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, home.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

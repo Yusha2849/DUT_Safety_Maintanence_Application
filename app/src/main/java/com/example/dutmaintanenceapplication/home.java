@@ -10,12 +10,14 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class home extends AppCompatActivity {
     private ImageView mnu;
+    CardView faultlog, faulthistory,existingf, justf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,16 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mnu = findViewById(R.id.menu);
+        existingf = findViewById(R.id.existingfault);
 
+        existingf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(),FaultQueue.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,34 +49,29 @@ public class home extends AppCompatActivity {
                         // Handle menu item clicks
                         int itemId = item.getItemId();
                         if (itemId == R.id.account) {
-                            // Handle menu item 1 click
                             Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), profile.class);
                             startActivity(intent);
                             return true;
                         } else if (itemId == R.id.faulthistory) {
-                            // Handle menu item 2 click
-                            Toast.makeText(getApplicationContext(), "Faulty History", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), ClinicBooking.class);
+                            Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), profile.class);
                             startActivity(intent);
-                            return true;*/
+                            return true;
                         }
-
                         else if (itemId == R.id.logfaulty) {
-                            // Handle menu item 2 click
                             Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
-                           /* Intent intent = new Intent(getApplicationContext(), ClinicHistory.class);
+                            Intent intent = new Intent(getApplicationContext(), report.class);
                             startActivity(intent);
-                            return true;*/
+                            return true;
                         } else if (itemId == R.id.pendingfault) {
-                            // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "My Profile", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+                            Toast.makeText(getApplicationContext(), "Faulty Queue", Toast.LENGTH_SHORT).show();
+                           /* Intent intent = new Intent(getApplicationContext(), FaultQueue.class);
                             startActivity(intent);
                             return true;*/
                         }else if (itemId == R.id.settings) {
                             // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
                             /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
                             startActivity(intent);
                             return true;*/
