@@ -55,9 +55,9 @@ public class FaultQueue extends AppCompatActivity {
                         } else if (itemId == R.id.faulthistory) {
                             // Handle menu item 2 click
                             Toast.makeText(getApplicationContext(), "Faulty History", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), ClinicBooking.class);
+                            Intent intent = new Intent(getApplicationContext(), FaultQueue.class);
                             startActivity(intent);
-                            return true;*/
+                            return true;
                         }
                         else if (itemId == R.id.logfaulty) {
                             Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
@@ -66,18 +66,16 @@ public class FaultQueue extends AppCompatActivity {
                             return true;
                         } else if (itemId == R.id.pendingfault) {
                             // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "My Profile", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+                            Toast.makeText(getApplicationContext(), "Pending Faulty", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), FaultQueue.class);
                             startActivity(intent);
-                            return true;*/
+                            return true;
                         }else if (itemId == R.id.settings) {
-                            // Handle menu item 3 click
                             Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
                             /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
                             startActivity(intent);
                             return true;*/
                         } else if (itemId == R.id.signout) {
-                            // Handle menu item 4 click
                             Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), Login.class);
                             startActivity(intent);
