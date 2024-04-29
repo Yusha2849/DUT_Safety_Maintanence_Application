@@ -3,6 +3,14 @@
     <string name="welcome">Welcome!</string>
     <string name="login_to_your_account">LOGIN TO YOUR ACCOUNT</string>
     <string name="forgot_password">Forgot password</string>
+
+    <string-array name="fault_types_array">
+        <item>Electrical</item>
+        <item>Mechanical</item>
+        <item>Structural</item>
+        <item>Other</item>
+    </string-array>
+
     <string-array name="campus">
         <item>Ritson</item>
         <item>Steve Biko</item>
@@ -11,6 +19,7 @@
         <item>Indumiso</item>
         <item>Riverside</item>
     </string-array>
+
     <string-array name="RitsonBlock">
         <item>A</item>
         <item>B</item>
@@ -34,6 +43,7 @@
         <item>Q</item>
         <item>R</item>
     </string-array>
+
     <string-array name="SteveBlock">
         <item>A1</item>
         <item>A2</item>

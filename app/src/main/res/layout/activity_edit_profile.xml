@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
+    android:paddingTop="15dp"
     android:layout_height="match_parent"
     android:background="@drawable/background_issuereport">
+
+    <include layout="@layout/hometoolbar"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +16,7 @@
         android:text="Edit Profile"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/bebasneue_regular"
         android:letterSpacing="0.2"
         android:textColor="@color/black"
