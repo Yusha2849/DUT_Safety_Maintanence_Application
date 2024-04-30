@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
@@ -8,78 +9,94 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_issuereport">
 
-    <include layout="@layout/hometoolbar"/>
+    <TextView
+        android:id="@+id/issueTitle"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bebasneue_regular"
+        android:textAlignment="center"
+        android:letterSpacing="0.2"
+        android:text="Issue"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/campus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Campus"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Location"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/building"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Block/Building"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/issuetype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Issue Type"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Detailed Description"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
     <ImageView
-        android:id="@+id/profile_picture"
+        android:id="@+id/imageIssue"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp" />
-        <!-- android:src="@drawable/default_profile_pic"  -->
-        <!-- Need default profile pic -->
-    <TextView
-        android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:text="Profile"
-        android:fontFamily="@font/bebasneue_regular"
-        android:letterSpacing="0.2"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/first_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="First name"
-        android:fontFamily="@font/poppins_regular"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/last_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Last name"
-        android:fontFamily="@font/poppins_regular"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="email"
-        android:fontFamily="@font/poppins_regular"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/DOB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Date of birth"
-        android:fontFamily="@font/poppins_regular"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
 
     <Button
-        android:id="@+id/edit_profile_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/upvoteButton"
+        android:layout_width="293dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
         android:fontFamily="@font/poppins_semibold"
-        android:backgroundTint="@color/button_purple"
-        android:text="Edit Profile" />
+        app:backgroundTint="@color/button_purple"
+        android:text="Upvote issue" />
 
-
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="293dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_semibold"
+        app:backgroundTint="@color/button_purple"
+        android:text="Go home" />
 
 </LinearLayout>

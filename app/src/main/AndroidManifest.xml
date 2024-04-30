@@ -17,6 +17,12 @@
         android:theme="@style/Theme.DUTMaintanenceApplication"
         tools:targetApi="31">
         <activity
+            android:name=".view_issue"
+            android:exported="false" />
+        <activity
+            android:name=".tech_home"
+            android:exported="false" />
+        <activity
             android:name=".FaultQueue"
             android:exported="false" />
         <activity
