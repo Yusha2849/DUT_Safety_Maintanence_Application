@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:paddingTop="15dp"
     android:layout_height="match_parent"
-    android:background="@drawable/background_issuereport">
+    android:background="@drawable/waves">
 
     <TextView
         android:id="@+id/issueTitle"
@@ -17,6 +17,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/bebasneue_regular"
         android:textAlignment="center"
+        android:paddingTop="20dp"
         android:letterSpacing="0.2"
         android:text="Issue"
         android:textColor="@android:color/black"
@@ -96,7 +97,7 @@
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
         android:fontFamily="@font/poppins_semibold"
-        app:backgroundTint="@color/button_purple"
+        app:backgroundTint="@color/button_green"
         android:text="Upvote issue" />
 
     <Button
@@ -106,7 +107,7 @@
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
         android:fontFamily="@font/poppins_semibold"
-        app:backgroundTint="@color/button_purple"
+        app:backgroundTint="@color/button_green"
         android:text="Go home" />
 
 </LinearLayout>
