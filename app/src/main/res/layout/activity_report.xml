@@ -36,7 +36,7 @@
 
     <Spinner
         android:id="@+id/campusSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"/>
 
@@ -52,7 +52,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/locationlabel"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
@@ -82,7 +82,7 @@
 
     <Spinner
         android:id="@+id/blockTypeSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -97,7 +97,7 @@
 
     <Spinner
         android:id="@+id/issueTypeSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -112,7 +112,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/desclabel"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
