@@ -12,9 +12,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class FaultQueue extends AppCompatActivity {
+public class view_issue extends AppCompatActivity {
 
-    private static final String TAG = "Fault";
+    private static final String TAG = "view_issue";
     private TableLayout reportTable;
 
     @Override

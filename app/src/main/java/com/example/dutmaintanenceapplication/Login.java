@@ -67,12 +67,13 @@ public class Login extends AppCompatActivity {
                 String userEmail = String.valueOf(email.getText());
                 String userPassword = String.valueOf(password.getText());
 
+                // Attempt to sign in with Firebase authentication
                 mAuth.signInWithEmailAndPassword(userEmail, userPassword)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
+                                    // Firebase authentication succeeded
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     if (user != null && user.isEmailVerified()) {
                                         Toast.makeText(getApplicationContext(), "Authentication Succeeded", Toast.LENGTH_SHORT).show();
@@ -83,15 +84,25 @@ public class Login extends AppCompatActivity {
                                         Toast.makeText(Login.this, "Please verify your email before logging in", Toast.LENGTH_SHORT).show();
                                         mAuth.signOut(); // Sign out the user to prevent access without verification
                                     }
-                                } else if (userEmail.isEmpty() || userPassword.isEmpty()) {
-                                    Toast.makeText(Login.this, "Email or Password Shouldn't Be Empty", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    // Firebase authentication failed, check hardcoded technician credentials
+                                    if (userEmail.equals("tech1@dut.ac.za") && userPassword.equals("tech1")) {
+                                        // Technician login successful
+                                        Toast.makeText(Login.this, "Technician Authentication Succeeded", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), tech_home.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        // Incorrect credentials
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         });
             }
         });
+
     }
 
     @Override

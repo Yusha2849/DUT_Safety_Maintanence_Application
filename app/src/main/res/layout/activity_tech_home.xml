@@ -4,9 +4,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="30dp"
+    android:paddingTop="18dp"
     android:orientation="vertical"
-    android:background="@drawable/gradient"
+    android:background="@drawable/gradient3"
     tools:context=".MainActivity">
 
     <include layout="@layout/hometoolbar"></include>
@@ -18,58 +18,6 @@
         android:layout_marginTop="80dp"
         android:orientation="vertical"
         android:padding="16dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/logfault"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Log Fault"
-                        android:paddingTop="20dp"
-                        android:layout_gravity="center"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Tap to log new fault"
-                        android:layout_gravity="center"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/logfaulticon" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/faulthistory"
@@ -97,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_semibold"
-                        android:paddingTop="20dp"
+                        android:paddingTop="70dp"
                         android:text="Fault History"
                         android:textSize="25sp"
                         android:textColor="@color/black"
@@ -117,14 +65,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/historyicon" />
+                    android:src="@drawable/historytechicon" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/existingfault"
+            android:id="@+id/myduties"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_weight="1"
@@ -140,7 +88,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="176dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -149,10 +97,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Fault in Queue"
-                        android:textSize="25sp"
-                        android:paddingTop="20dp"
+                        android:paddingTop="70dp"
+                        android:text="My duties"
                         android:textColor="@color/black"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -160,16 +108,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Tap to view fault in queue"
+                        android:text="Tap to view my assigned issues"
                         android:textSize="18sp" />
 
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/duty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/existingicon" />
+                    android:src="@drawable/searchtechicon" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

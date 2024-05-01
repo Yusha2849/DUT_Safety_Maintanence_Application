@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="15dp"
-    android:background="@drawable/gradient2"
-    tools:context=".FaultQueue">
+    android:paddingTop="2dp"
+    android:background="@drawable/gradient2">
 
     <include layout="@layout/hometoolbar"/>
 
@@ -78,7 +77,8 @@
 
     <!-- ListView for fault data -->
     <ListView
-        android:id="@+id/faultListView"
+        android:id="@+id/dutiesListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clickable="true"/>
 </LinearLayout>

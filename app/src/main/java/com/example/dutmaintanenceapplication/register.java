@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,19 +18,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class register extends AppCompatActivity {
     EditText fname, sname, remail, rpassword, rcpassword;
     FirebaseAuth mAuth;
     ProgressBar progb;
     Button regButton;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         fname = findViewById(R.id.firstname);
         sname = findViewById(R.id.surname);
         remail = findViewById(R.id.registeremail);
@@ -62,10 +67,32 @@ public class register extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progb.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
-                                        sendEmailVerification(); // Call method to send verification email
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        if (user != null) {
+                                            // Create a Firestore document with user's additional information
+                                            Map<String, Object> userInfo = new HashMap<>();
+                                            userInfo.put("firstname", firstname);
+                                            userInfo.put("surname", surname);
+                                            userInfo.put("email", registeremail);
+                                            userInfo.put("timestamp", System.currentTimeMillis()); // Current timestamp
+
+                                            // Add the document to Firestore
+                                            db.collection("users")
+                                                    .document(user.getUid())
+                                                    .set(userInfo)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                sendEmailVerification();
+                                                            } else {
+                                                                Toast.makeText(getApplicationContext(), "Failed to create user information", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
+                                        }
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "Registration failed.",
-                                                Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Registration failed.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -82,11 +109,9 @@ public class register extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(getApplicationContext(), "Verification email sent.",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Verification email sent.", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Failed to send verification email.",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Failed to send verification email.", Toast.LENGTH_SHORT).show();
                             }
                             // Proceed to login activity
                             Intent intent = new Intent(getApplicationContext(), Login.class);

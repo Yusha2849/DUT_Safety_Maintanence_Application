@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:paddingTop="2dp"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/background_register">
-
-    <include layout="@layout/hometoolbar"></include>
+    <include layout="@layout/hometoolbar"/>
 
     <TextView
         android:id="@+id/reportTitle"
@@ -22,7 +19,7 @@
         android:fontFamily="@font/bebasneue_regular"
         android:textAlignment="center"
         android:letterSpacing="0.2"
-        android:text="Report an issue"
+        android:text="Edit a maintenance issue"
         android:textColor="@android:color/black"
         android:textSize="30sp" />
 
@@ -32,13 +29,12 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="Campus:"
-        android:paddingTop="20dp"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/campusSpinner"
-        android:layout_width="310dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"/>
 
@@ -47,14 +43,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:text="Specific Location (e.g., classroom no, hallway):"
+        android:text="Specific Location (e.g., classroom number, hallway):"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="16dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/locationlabel"
-        android:layout_width="310dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
@@ -84,7 +80,7 @@
 
     <Spinner
         android:id="@+id/blockTypeSpinner"
-        android:layout_width="310dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -99,7 +95,7 @@
 
     <Spinner
         android:id="@+id/issueTypeSpinner"
-        android:layout_width="310dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -114,7 +110,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/desclabel"
-        android:layout_width="310dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
@@ -127,7 +123,7 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
+            android:hint="Location"
             android:fontFamily="@font/poppins_regular"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -139,24 +135,15 @@
         android:text="Attach Image (Optional)"
         android:fontFamily="@font/poppins_semibold"
         app:backgroundTint="@color/button_purple"
-        android:layout_marginTop="8dp" />
-
-    <ImageView
-        android:id="@+id/attachedImageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:visibility="gone"
-        android:layout_gravity="center"
         android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="293dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:layout_marginTop="3dp"
         app:backgroundTint="@color/button_purple"
         android:text="Submit updated report" />
-
 
 </LinearLayout>

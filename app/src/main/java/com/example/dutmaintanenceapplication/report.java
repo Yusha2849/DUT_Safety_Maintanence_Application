@@ -11,26 +11,29 @@ import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class report extends AppCompatActivity {
     private ImageView mnu;
     private Spinner campusSpinner, blockSpinner, issueTypeSpinner;
     private ArrayAdapter<CharSequence> campusAdapter, blockAdapter, issueTypeAdapter;
-    private ReportDatabaseHelper databaseHelper;
     private TextInputEditText locationEditText, descriptionEditText;
     private Button submitButton;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
-        EdgeToEdge.enable(this);
 
-        // Initialize database helper
-        databaseHelper = new ReportDatabaseHelper(this);
+        firestore = FirebaseFirestore.getInstance();
+
         mnu = findViewById(R.id.menu);
         campusSpinner = findViewById(R.id.campusSpinner);
         blockSpinner = findViewById(R.id.blockTypeSpinner);
@@ -64,77 +67,73 @@ public class report extends AppCompatActivity {
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create a PopupMenu
                 PopupMenu popupMenu = new PopupMenu(report.this, mnu);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
 
-                // Set item click listener for the menu items
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        // Handle menu item clicks
                         int itemId = item.getItemId();
                         if (itemId == R.id.account) {
-                            // Handle menu item 1 click
                             Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), profile.class);
                             startActivity(intent);
                             return true;
                         } else if (itemId == R.id.faulthistory) {
-                            // Handle menu item 2 click
                             Toast.makeText(getApplicationContext(), "Faulty History", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), ClinicBooking.class);
-                            startActivity(intent);
-                            return true;*/
-                        }
-                        else if (itemId == R.id.logfaulty) {
+                        } else if (itemId == R.id.logfaulty) {
                             Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), report.class);
                             startActivity(intent);
                             return true;
                         } else if (itemId == R.id.pendingfault) {
-                            // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "My Profile", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+                            Toast.makeText(getApplicationContext(), "Pending faulty", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), FaultQueue.class);
                             startActivity(intent);
-                            return true;*/
-                        }else if (itemId == R.id.settings) {
-                            // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
-                            startActivity(intent);
-                            return true;*/
+                            return true;
+                        } else if (itemId == R.id.settings) {
+                            Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
                         } else if (itemId == R.id.signout) {
-                            // Handle menu item 4 click
                             Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), Login.class);
                             startActivity(intent);
                             return true;
                         }
-                        // Add more cases for additional menu items if needed
                         return false;
                     }
                 });
-
-                // Show the PopupMenu
                 popupMenu.show();
             }
         });
     }
 
-    // Method to save report when submit button is clicked
     private void saveReport() {
         String campus = campusSpinner.getSelectedItem().toString();
-        String location = locationEditText.getText().toString();
+        String location = locationEditText.getText().toString().trim();
         String block = blockSpinner.getSelectedItem().toString();
         String issueType = issueTypeSpinner.getSelectedItem().toString();
-        String description = descriptionEditText.getText().toString();
+        String description = descriptionEditText.getText().toString().trim();
 
-        long newRowId = databaseHelper.addReport(campus, location, block, issueType, description);
-        if (newRowId != -1) {
-            Toast.makeText(this, "Report submitted successfully", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Failed to submit report", Toast.LENGTH_SHORT).show();
+        if (location.isEmpty() || description.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        // Save report data to Firestore
+        Map<String, Object> reportData = new HashMap<>();
+        reportData.put("campus", campus);
+        reportData.put("location", location);
+        reportData.put("block", block);
+        reportData.put("issueType", issueType);
+        reportData.put("description", description);
+
+        firestore.collection("reports")
+                .add(reportData)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(report.this, "Report submitted successfully", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(report.this, "Failed to submit report", Toast.LENGTH_SHORT).show();
+                });
     }
 }

@@ -18,12 +18,12 @@
         <!-- android:src="@drawable/default_profile_pic"  -->
         <!-- Need default profile pic -->
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="Name"
+        android:text="Profile"
         android:fontFamily="@font/bebasneue_regular"
         android:letterSpacing="0.2"
         android:textSize="30sp"
@@ -31,7 +31,27 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/user_email"
+        android:id="@+id/first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="First name"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Last name"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -41,11 +61,11 @@
         android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/user_password"
+        android:id="@+id/DOB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="password"
+        android:text="Date of birth"
         android:fontFamily="@font/poppins_regular"
         android:textSize="16sp"
         android:textColor="@color/black"/>
