@@ -30,7 +30,7 @@ public class home extends AppCompatActivity {
         existingf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),FaultQueue.class);
+                Intent intent= new Intent(getApplicationContext(),view_issue.class);
                 startActivity(intent);
                 finish();
             }
@@ -38,11 +38,10 @@ public class home extends AppCompatActivity {
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create a PopupMenu
+
                 PopupMenu popupMenu = new PopupMenu(home.this, mnu);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
 
-                // Set item click listener for the menu items
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -66,23 +65,20 @@ public class home extends AppCompatActivity {
                             return true;
                         } else if (itemId == R.id.pendingfault) {
                             Toast.makeText(getApplicationContext(), "Faulty Queue", Toast.LENGTH_SHORT).show();
-                           /* Intent intent = new Intent(getApplicationContext(), FaultQueue.class);
+                           Intent intent = new Intent(getApplicationContext(), view_issue.class);
                             startActivity(intent);
-                            return true;*/
+                            return true;
                         }else if (itemId == R.id.settings) {
-                            // Handle menu item 3 click
                             Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+                            /*Intent intent = new Intent(getApplicationContext(), Settings.class);
                             startActivity(intent);
                             return true;*/
                         } else if (itemId == R.id.signout) {
-                            // Handle menu item 4 click
                             Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), Login.class);
                             startActivity(intent);
                             return true;
                         }
-                        // Add more cases for additional menu items if needed
                         return false;
                     }
                 });
