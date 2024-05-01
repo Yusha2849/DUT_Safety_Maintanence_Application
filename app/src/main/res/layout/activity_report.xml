@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:text="Specific Location (e.g., classroom no, hallway):"
+        android:text="Specific Location:"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="16dp" />
@@ -78,7 +78,7 @@
         android:id="@+id/blockLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Block/Building (if applicable):"
+        android:text="Block/Building:"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:fontFamily="@font/poppins_semibold"
