@@ -4,9 +4,9 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:paddingTop="15dp"
+    android:paddingTop="30dp"
     android:layout_height="match_parent"
-    android:background="@drawable/background_issuereport">
+    android:background="@drawable/waves">
 
     <include layout="@layout/hometoolbar"/>
     <ImageView
@@ -15,9 +15,8 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@drawable/dut_user2"/>
-        <!-- android:src="@drawable/default_profile_pic"  -->
-        <!-- Need default profile pic -->
+        android:src="@drawable/dut_user3"/>
+    <!-- Need default profile pic -->
     <TextView
         android:id="@+id/profile"
         android:layout_width="wrap_content"
@@ -72,15 +71,13 @@
         android:textColor="@color/black"/>
 
     <Button
-        android:id="@+id/edit_profile_button"
+        android:id="@+id/techHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_semibold"
-        android:backgroundTint="@color/button_purple"
-        android:text="Edit Profile" />
-
-
+        android:backgroundTint="@color/button_green"
+        android:text="Home" />
 
 </LinearLayout>

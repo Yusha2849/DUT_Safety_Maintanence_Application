@@ -7,66 +7,117 @@
     android:layout_width="match_parent"
     android:paddingTop="15dp"
     android:layout_height="match_parent"
-    android:background="@drawable/background_issuereport">
+    android:background="@drawable/background_forgotpass">
 
-    <include layout="@layout/hometoolbar"/>
-
-    <TableLayout
-        android:id="@+id/reportTable"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/issueTitle"
+        android:layout_width="328dp"
         android:layout_height="wrap_content"
-        android:stretchColumns="*"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:padding="8dp"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal">
+        android:fontFamily="@font/bebasneue_regular"
+        android:textAlignment="center"
+        android:paddingTop="20dp"
+        android:letterSpacing="0.2"
+        android:text="Issue"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
 
-        <!-- Table Headers -->
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/campus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Campus"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Campus"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Location"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Location"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+    <TextView
+        android:id="@+id/building"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Block/Building"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Block"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+    <TextView
+        android:id="@+id/issuetype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Issue Type"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Issue"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Detailed Description"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Desc."
-                android:textStyle="bold"
-                android:padding="8dp"/>
+    <TextView
+        android:id="@+id/currentVotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Current votes"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Votes"
-                android:textStyle="bold"
-                android:padding="8dp"/>
-        </TableRow>
-    </TableLayout>
+    <ImageView
+        android:id="@+id/imageIssue"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/safetytips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Safety tips"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/upvoteButton"
+        android:layout_width="293dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_semibold"
+        app:backgroundTint="@color/button_purple"
+        android:text="Upvote issue" />
+
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="293dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_semibold"
+        app:backgroundTint="@color/button_purple"
+        android:text="Go home" />
+
 </LinearLayout>

@@ -26,6 +26,12 @@
 
         <!-- Activities -->
         <activity
+            android:name=".tech_profile"
+            android:exported="false" />
+        <activity
+            android:name=".tech_history"
+            android:exported="false" />
+        <activity
             android:name=".view_issue"
             android:exported="false" />
         <activity
