@@ -14,22 +14,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class tech_home extends AppCompatActivity {
+public class tech_profile extends AppCompatActivity {
 
     private ImageView mnu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_tech_home);
-
+        setContentView(R.layout.activity_tech_profile);
         mnu = findViewById(R.id.menu);
 
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Create a PopupMenu
-                PopupMenu popupMenu = new PopupMenu(tech_home.this, mnu);
+                PopupMenu popupMenu = new PopupMenu(tech_profile.this, mnu);
                 popupMenu.getMenuInflater().inflate(R.menu.tech_menu, popupMenu.getMenu());
 
                 // Set item click listener for the menu items
@@ -69,6 +68,5 @@ public class tech_home extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
     }
 }

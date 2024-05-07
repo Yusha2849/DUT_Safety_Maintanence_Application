@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/account"
+        android:id="@+id/profile"
         android:title="My profile"/>
     <item
-        android:id="@+id/faultyhistory"
+        android:id="@+id/faulthistory"
         android:title="Faulty History" />
     <item
-        android:id="@+id/pendingfault"
+        android:id="@+id/duties"
         android:title="My duties"/>
     <item
         android:id="@+id/signout"

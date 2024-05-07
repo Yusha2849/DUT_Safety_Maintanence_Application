@@ -8,6 +8,7 @@
     <LinearLayout android:id="@+id/main"
         android:orientation="vertical"
         android:gravity="center"
+        android:paddingTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_register">
