@@ -113,7 +113,7 @@ public class home extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, home.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
         super.onBackPressed();
