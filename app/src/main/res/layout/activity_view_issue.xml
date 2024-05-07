@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:paddingTop="15dp"
     android:layout_height="match_parent"
-    android:background="@drawable/waves">
+    android:background="@drawable/background_forgotpass">
 
     <TextView
         android:id="@+id/issueTitle"
@@ -90,6 +90,16 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp" />
 
+    <TextView
+        android:id="@+id/safetytips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Safety tips"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
     <Button
         android:id="@+id/upvoteButton"
         android:layout_width="293dp"
@@ -97,7 +107,7 @@
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
         android:fontFamily="@font/poppins_semibold"
-        app:backgroundTint="@color/button_green"
+        app:backgroundTint="@color/button_purple"
         android:text="Upvote issue" />
 
     <Button
@@ -107,7 +117,7 @@
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
         android:fontFamily="@font/poppins_semibold"
-        app:backgroundTint="@color/button_green"
+        app:backgroundTint="@color/button_purple"
         android:text="Go home" />
 
 </LinearLayout>
