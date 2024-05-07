@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@drawable/gradient3"
     tools:context=".MainActivity">
-
+<!-- Add fualt description and a picture for them -->
     <include layout="@layout/hometoolbar"></include>
 
     <!-- Vertical LinearLayout to contain the two rows of cards -->
