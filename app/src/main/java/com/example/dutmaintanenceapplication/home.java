@@ -26,6 +26,8 @@ public class home extends AppCompatActivity {
 
         mnu = findViewById(R.id.menu);
         existingf = findViewById(R.id.existingfault);
+        faultlog = findViewById(R.id.logfault);
+        faulthistory = findViewById(R.id.faulthistory);
 
         existingf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,27 @@ public class home extends AppCompatActivity {
                 finish();
             }
         });
+
+        faultlog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle click event for the faultlog CardView
+                Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), report.class);
+                startActivity(intent);
+            }
+        });
+
+        faulthistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle click event for the faulthistory CardView
+                Toast.makeText(getApplicationContext(), "Fault History", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), history.class);
+                startActivity(intent);
+            }
+        });
+
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

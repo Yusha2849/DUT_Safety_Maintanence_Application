@@ -1,5 +1,6 @@
 package com.example.dutmaintanenceapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -16,5 +17,13 @@ public class history extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_history);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, home.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

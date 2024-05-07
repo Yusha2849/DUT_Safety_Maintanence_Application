@@ -1,5 +1,6 @@
 package com.example.dutmaintanenceapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TableLayout;
@@ -71,5 +72,12 @@ public class view_issue extends AppCompatActivity {
         row.addView(currentVotesTextView);
 
         reportTable.addView(row);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, home.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }
