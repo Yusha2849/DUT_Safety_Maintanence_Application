@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="30dp"
-    android:background="@drawable/gradient2">
+    android:background="@drawable/gradient3">
 
     <include layout="@layout/hometoolbar"/>
 

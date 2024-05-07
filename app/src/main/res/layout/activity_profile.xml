@@ -14,7 +14,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:src="@drawable/dut_user2"/>
         <!-- android:src="@drawable/default_profile_pic"  -->
         <!-- Need default profile pic -->
     <TextView

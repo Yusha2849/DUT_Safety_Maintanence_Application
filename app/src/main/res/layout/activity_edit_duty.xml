@@ -11,7 +11,7 @@
         android:paddingTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_register">
+        android:background="@drawable/wavestech">
 
         <include layout="@layout/hometoolbar"></include>
 
@@ -191,7 +191,7 @@
             android:layout_height="wrap_content"
             android:text="Attach Image (Optional)"
             android:fontFamily="@font/poppins_semibold"
-            app:backgroundTint="@color/button_purple"
+            app:backgroundTint="@color/button_green"
             android:layout_marginTop="8dp" />
 
         <Button
@@ -200,7 +200,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:layout_marginTop="3dp"
-            app:backgroundTint="@color/button_purple"
+            app:backgroundTint="@color/button_green"
             android:text="Submit report" />
 
     </LinearLayout>
