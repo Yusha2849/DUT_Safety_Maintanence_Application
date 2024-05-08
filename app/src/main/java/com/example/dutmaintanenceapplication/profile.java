@@ -34,52 +34,51 @@ public class profile extends AppCompatActivity {
                 popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
 
                 // Set item click listener for the menu items
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                mnu.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        // Handle menu item clicks
-                        int itemId = item.getItemId();
-                        if (itemId == R.id.account) {
-                            // Handle menu item 1 click
-                            Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), profile.class);
-                            startActivity(intent);
-                            return true;
-                        } else if (itemId == R.id.faulthistory) {
-                            // Handle menu item 2 click
-                            Toast.makeText(getApplicationContext(), "Faulty History", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), ClinicBooking.class);
-                            startActivity(intent);
-                            return true;*/
-                        }
+                    public void onClick(View v) {
 
-                        else if (itemId == R.id.logfaulty) {
-                            // Handle menu item 2 click
-                            Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
-                           /* Intent intent = new Intent(getApplicationContext(), ClinicHistory.class);
-                            startActivity(intent);
-                            return true;*/
-                        } else if (itemId == R.id.pendingfault) {
-                            // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "My Profile", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
-                            startActivity(intent);
-                            return true;*/
-                        }else if (itemId == R.id.settings) {
-                            // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
-                            startActivity(intent);
-                            return true;*/
-                        } else if (itemId == R.id.signout) {
-                            // Handle menu item 4 click
-                            Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), Login.class);
-                            startActivity(intent);
-                            return true;
-                        }
-                        // Add more cases for additional menu items if needed
-                        return false;
+                        PopupMenu popupMenu = new PopupMenu(profile.this, mnu);
+                        popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
+
+                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                // Handle menu item clicks
+                                int itemId = item.getItemId();
+                                if (itemId == R.id.account) {
+                                    Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), profile.class);
+                                    startActivity(intent);
+                                    return true;
+                                } else if (itemId == R.id.faultyhistory) {
+                                    Toast.makeText(getApplicationContext(), "History", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), history.class);
+                                    startActivity(intent);
+                                    return true;
+                                }
+                                else if (itemId == R.id.logfaulty) {
+                                    Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), report.class);
+                                    startActivity(intent);
+                                    return true;
+                                } else if (itemId == R.id.pendingfault) {
+                                    Toast.makeText(getApplicationContext(), "Faulty Queue", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), view_issue.class);
+                                    startActivity(intent);
+                                    return true;
+                                } else if (itemId == R.id.signout) {
+                                    Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                                    startActivity(intent);
+                                    return true;
+                                }
+                                return false;
+                            }
+                        });
+
+                        // Show the PopupMenu
+                        popupMenu.show();
                     }
                 });
 

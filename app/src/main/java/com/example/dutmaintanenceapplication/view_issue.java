@@ -23,7 +23,7 @@ public class view_issue extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_issue);
 
-        reportTable = findViewById(R.id.reportTable);
+        //reportTable = findViewById(R.id.reportTable);
 
         // Initialize Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();

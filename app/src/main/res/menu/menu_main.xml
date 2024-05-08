@@ -12,9 +12,6 @@
         android:id="@+id/pendingfault"
         android:title="Pending Fault" />
     <item
-        android:id="@+id/settings"
-        android:title="Settings" />
-    <item
         android:id="@+id/signout"
         android:title="Signout" />
 

@@ -58,7 +58,11 @@ public class register extends AppCompatActivity {
                 if (firstname.isEmpty() || surname.isEmpty() || registeremail.isEmpty() || regpass.isEmpty() || confipass.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_SHORT).show();
                     progb.setVisibility(View.GONE);
-                } else if (!regpass.equals(confipass)) {
+                }
+                else if (!registeremail.endsWith("@dut4life.ac.za")) {
+                    Toast.makeText(getApplicationContext(), "Please register with a '@dut4life.ac.za' email address", Toast.LENGTH_SHORT).show();
+                    progb.setVisibility(View.GONE);
+                }else if (!regpass.equals(confipass)) {
                     Toast.makeText(getApplicationContext(), "Password and Confirm password not matching", Toast.LENGTH_SHORT).show();
                 } else {
                     mAuth.createUserWithEmailAndPassword(registeremail, regpass)
@@ -73,12 +77,12 @@ public class register extends AppCompatActivity {
                                             Map<String, Object> userInfo = new HashMap<>();
                                             userInfo.put("firstname", firstname);
                                             userInfo.put("surname", surname);
-                                            userInfo.put("email", registeremail);
                                             userInfo.put("timestamp", System.currentTimeMillis()); // Current timestamp
+                                            userInfo.put("role", "DUTCommunity"); // Assign user role
 
                                             // Add the document to Firestore
                                             db.collection("users")
-                                                    .document(user.getUid())
+                                                    .document(registeremail)
                                                     .set(userInfo)
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override

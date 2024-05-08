@@ -75,9 +75,9 @@ public class home extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), profile.class);
                             startActivity(intent);
                             return true;
-                        } else if (itemId == R.id.faulthistory) {
-                            Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), profile.class);
+                        } else if (itemId == R.id.faultyhistory) {
+                            Toast.makeText(getApplicationContext(), "History", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), history.class);
                             startActivity(intent);
                             return true;
                         }
@@ -91,11 +91,6 @@ public class home extends AppCompatActivity {
                            Intent intent = new Intent(getApplicationContext(), view_issue.class);
                             startActivity(intent);
                             return true;
-                        }else if (itemId == R.id.settings) {
-                            Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), Settings.class);
-                            startActivity(intent);
-                            return true;*/
                         } else if (itemId == R.id.signout) {
                             Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), Login.class);

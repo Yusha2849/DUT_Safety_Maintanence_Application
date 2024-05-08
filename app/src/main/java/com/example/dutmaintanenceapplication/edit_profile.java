@@ -62,12 +62,6 @@ public class edit_profile extends AppCompatActivity {
                             /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
                             startActivity(intent);
                             return true;*/
-                        }else if (itemId == R.id.settings) {
-                            // Handle menu item 3 click
-                            Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
-                            /*Intent intent = new Intent(getApplicationContext(), MyProfile.class);
-                            startActivity(intent);
-                            return true;*/
                         } else if (itemId == R.id.signout) {
                             // Handle menu item 4 click
                             Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
