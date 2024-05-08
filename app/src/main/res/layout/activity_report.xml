@@ -177,7 +177,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_semibold"
             app:backgroundTint="@color/button_purple"
-            android:text="Generate Saftey Tips" />
+            android:text="Generate Safety Tips" />
 
 
 

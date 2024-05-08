@@ -38,10 +38,11 @@
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
-        <Spinner
+        <TextView
             android:id="@+id/campusSpinner"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
+            android:hint="Location"
             android:textColor="@android:color/black"/>
 
         <TextView
