@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -17,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class tech_home extends AppCompatActivity {
 
     private ImageView mnu;
+
+    CardView myduties, faulthistory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,26 @@ public class tech_home extends AppCompatActivity {
         setContentView(R.layout.activity_tech_home);
 
         mnu = findViewById(R.id.menu);
+        myduties = findViewById(R.id.myduties);
+        faulthistory = findViewById(R.id.faulthistory);
+
+        myduties.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(),duties.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        faulthistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(), tech_history.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,5 +93,12 @@ public class tech_home extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

@@ -71,4 +71,12 @@ public class tech_history extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, tech_home.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+    }
 }
