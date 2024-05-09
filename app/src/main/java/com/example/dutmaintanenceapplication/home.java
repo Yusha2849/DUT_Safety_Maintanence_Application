@@ -32,7 +32,7 @@ public class home extends AppCompatActivity {
         existingf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),view_issue.class);
+                Intent intent= new Intent(getApplicationContext(),FaultQueue.class);
                 startActivity(intent);
                 finish();
             }

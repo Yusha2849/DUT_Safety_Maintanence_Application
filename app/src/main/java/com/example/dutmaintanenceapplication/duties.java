@@ -4,87 +4,77 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import android.util.Log;
+
 
 public class duties extends AppCompatActivity {
 
-
-    //I'm assuming  the tech will see the list of issues, issues will be clickable and take the tech to edit duties
     private ImageView mnu;
-    private FirebaseFirestore firestore;
-    private String currentUserUid;
+    private static final String TAG = "duties";
+    private ListView faultListView;
+    private ArrayList<HashMap<String, Object>> reportDataList; // Stores report data
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_duties);
 
+        reportDataList = new ArrayList<>(); // Initialize report data list
+        faultListView = findViewById(R.id.dutiesListView);
         mnu = findViewById(R.id.menu);
-        firestore = FirebaseFirestore.getInstance();
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            currentUserUid = currentUser.getUid();
-        } else {
-            // Handle the case where the user is not logged in
-            Toast.makeText(this, "User is not logged in", Toast.LENGTH_SHORT).show();
-            finish(); // Finish the activity if the user is not logged in
-        }
-
-        fetchAndDisplayReports();
 
         mnu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create a PopupMenu
-                PopupMenu popupMenu = new PopupMenu(duties.this, mnu);
-                popupMenu.getMenuInflater().inflate(R.menu.tech_menu, popupMenu.getMenu());
 
-                // Set item click listener for the menu items
+                PopupMenu popupMenu = new PopupMenu(duties.this, mnu);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
+
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         // Handle menu item clicks
                         int itemId = item.getItemId();
-                        if (itemId == R.id.profile) {
-                            Toast.makeText(getApplicationContext(), "My profile", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), tech_profile.class);
+                        if (itemId == R.id.account) {
+                            Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), profile.class);
                             startActivity(intent);
                             return true;
-                        } else if (itemId == R.id.faulthistory) {
-                            Toast.makeText(getApplicationContext(), "Fault history", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), tech_history.class);
+                        } else if (itemId == R.id.faultyhistory) {
+                            Toast.makeText(getApplicationContext(), "History", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), history.class);
                             startActivity(intent);
                             return true;
-                        } else if (itemId == R.id.duties) {
-                            Toast.makeText(getApplicationContext(), "My duties", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), duties.class);
+                        } else if (itemId == R.id.logfaulty) {
+                            Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), report.class);
+                            startActivity(intent);
+                            return true;
+                        } else if (itemId == R.id.pendingfault) {
+                            Toast.makeText(getApplicationContext(), "Faulty Queue", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), view_issue.class);
                             startActivity(intent);
                             return true;
                         } else if (itemId == R.id.signout) {
-                            // Handle menu item 4 click
                             Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), Login.class);
                             startActivity(intent);
                             return true;
                         }
-                        // Add more cases for additional menu items if needed
                         return false;
                     }
                 });
@@ -93,55 +83,78 @@ public class duties extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-    }
 
-    // Fetch and display reports assigned to the technician
-    private void fetchAndDisplayReports() {
-        firestore.collection("reports")
-                .whereEqualTo("TechnicianID", currentUserUid) // Filter reports by TechnicianId
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        List<String> reportList = new ArrayList<>();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            // Retrieve report details
-                            String campus = document.getString("campus");
-                            String location = document.getString("location");
-                            String priority = document.getString("Priority");
-                            int upVotes = document.getLong("UpVotes").intValue();
+        // Initialize Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                            // Concatenate report details into a single string
-                            String reportDetails = campus + " - " + location + " - " + priority + " - " + upVotes;
-                            reportList.add(reportDetails);
+        // Retrieve current user's UID
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String currentUserUid = currentUser != null ? currentUser.getUid() : null;
+
+        if (currentUserUid != null) {
+            // Retrieve reports where TechnicianID matches current user's UID and IssueStatus is "Pending"
+            db.collection("reports")
+                    .whereEqualTo("TechnicianID", currentUserUid)
+                    .whereEqualTo("IssueStatus", "Pending")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                renderReport(document);
+                            }
+                            updateListView(); // Update ListView after data retrieval
+                        } else {
+                            Log.w(TAG, "Error getting reports.", task.getException());
                         }
+                    });
+        } else {
+            // Handle the case where the user is not logged in
+            Toast.makeText(this, "User is not logged in", Toast.LENGTH_SHORT).show();
+            finish(); // Finish the activity if the user is not logged in
+        }
 
-                        // Create an ArrayAdapter to bind the reportList to the ListView
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                                R.layout.list_item_report, R.id.text_report_details, reportList);
+        // Set click listener for ListView items
+        faultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the clicked report data
+                HashMap<String, Object> clickedReport = reportDataList.get(position);
 
-                        // Set the adapter for the ListView
-                        ListView dutiesListView = findViewById(R.id.dutiesListView);
-                        dutiesListView.setAdapter(adapter);
-
-                        // Set item click listener for the ListView
-                        dutiesListView.setOnItemClickListener((parent, view, position, id) -> {
-                            // Get the selected report details
-                            String selectedReportDetails = reportList.get(position);
-
-                            // Launch the edit_duty activity with the selected report details
-                            Intent intent = new Intent(duties.this, edit_duty.class);
-                            intent.putExtra("selectedReportDetails", selectedReportDetails);
-                            startActivity(intent);
-                        });
-
-                    } else {
-                        // Handle errors
-                        Toast.makeText(this, "Failed to fetch reports", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                // Start a new activity to show full details
+                Intent intent = new Intent(duties.this, edit_duty.class);
+                intent.putExtra("reportData", clickedReport); // Pass report data to new activity
+                startActivity(intent);
+            }
+        });
     }
 
+    // Render report from Firestore document
+    private void renderReport(QueryDocumentSnapshot report) {
+        // Extract report data (consider including all relevant fields)
+        String reportSummary = "Campus: " + report.getString("campus") + "\n" +
+                "Location: " + report.getString("location") + "\n" +
+                "Block: " + report.getString("block") + "\n" +
+                "Issue Type: " + report.getString("issueType");
 
+        HashMap<String, Object> reportData = new HashMap<>();
+        reportData.put("campus", report.getString("campus"));
+        reportData.put("location", report.getString("location"));
+        reportData.put("block", report.getString("block"));
+        reportData.put("issueType", report.getString("issueType"));
+        reportData.put("description", report.getString("description")); // Add description
+        reportData.put("UpVotes", String.valueOf(report.getLong("UpVotes")));
+        reportData.put("imageUrl", report.getString("imageUrl"));
+        reportData.put("safetyTips", report.getString("safetyTips"));
+
+        reportDataList.add(reportData); // Add report data to the list
+    }
+
+    // Update ListView with report data
+    private void updateListView() {
+        // Create or update the ListView adapter
+        MyCustomAdapter adapter = new MyCustomAdapter(this, reportDataList);
+        faultListView.setAdapter(adapter);
+    }
 
     @Override
     public void onBackPressed() {
@@ -151,4 +164,3 @@ public class duties extends AppCompatActivity {
         super.onBackPressed();
     }
 }
-

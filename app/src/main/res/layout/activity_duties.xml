@@ -6,79 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="30dp"
-    android:background="@drawable/gradient3">
+    android:paddingTop="15dp"
+    android:background="@drawable/gradient3"
+    tools:context=".duties">
 
     <include layout="@layout/hometoolbar"/>
 
-    <!-- Table headers -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#d1dbe4"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="center"
-            android:text="Campus"
-            android:textColor="@android:color/black"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="center"
-            android:text="Location"
-            android:textColor="@android:color/black"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="center"
-            android:text="Block"
-            android:textColor="@android:color/black"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="center"
-            android:text="Type"
-            android:textColor="@android:color/black"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="center"
-            android:text="Description"
-            android:textColor="@android:color/black"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <!-- ListView for fault data -->
     <ListView
         android:id="@+id/dutiesListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"/>
+        android:layout_height="match_parent" />
 </LinearLayout>
+
+
+
+
+
