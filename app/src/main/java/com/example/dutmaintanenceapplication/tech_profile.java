@@ -2,71 +2,68 @@ package com.example.dutmaintanenceapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class tech_profile extends AppCompatActivity {
 
-    private ImageView mnu;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private TextView firstNameTextView, lastNameTextView, emailTextView,roleTextView,departmentTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tech_profile);
-        mnu = findViewById(R.id.menu);
 
-        mnu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create a PopupMenu
-                PopupMenu popupMenu = new PopupMenu(tech_profile.this, mnu);
-                popupMenu.getMenuInflater().inflate(R.menu.tech_menu, popupMenu.getMenu());
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        firstNameTextView = findViewById(R.id.first_name);
+        lastNameTextView = findViewById(R.id.last_name);
+        emailTextView = findViewById(R.id.email);
+        roleTextView = findViewById(R.id.email);
+        departmentTextView = findViewById(R.id.email);
 
-                // Set item click listener for the menu items
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        // Handle menu item clicks
-                        int itemId = item.getItemId();
-                        if (itemId == R.id.profile) {
-                            Toast.makeText(getApplicationContext(), "My profile", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), tech_profile.class);
-                            startActivity(intent);
-                            return true;
-                        } else if (itemId == R.id.faulthistory) {
-                            Toast.makeText(getApplicationContext(), "Fault history", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), tech_history.class);
-                            startActivity(intent);
-                            return true;
-                        } else if (itemId == R.id.duties) {
-                            Toast.makeText(getApplicationContext(), "My duties", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), duties.class);
-                            startActivity(intent);
-                            return true;
-                        } else if (itemId == R.id.signout) {
-                            // Handle menu item 4 click
-                            Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), Login.class);
-                            startActivity(intent);
-                            return true;
-                        }
-                        // Add more cases for additional menu items if needed
-                        return false;
+        // Fetch and display technician's information
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            DocumentReference userRef = db.collection("users").document(currentUser.getEmail());
+            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()) {
+                        // Inside the onSuccess method for fetching user's information
+                        String firstName = documentSnapshot.getString("firstname");
+                        String lastName = documentSnapshot.getString("surname");
+                        String email = documentSnapshot.getId(); // Technician's email
+                        String role = documentSnapshot.getString("role");
+                        String department = documentSnapshot.getString("department");
+
+                        firstNameTextView.setText(firstName);
+                        lastNameTextView.setText(lastName);
+                        emailTextView.setText(email);
+                        roleTextView.setText(role);
+                        departmentTextView.setText(department);
+
                     }
-                });
-
-                // Show the PopupMenu
-                popupMenu.show();
-            }
-        });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(tech_profile.this, "Failed to fetch technician's information", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

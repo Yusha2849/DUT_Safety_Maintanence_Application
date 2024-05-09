@@ -2,99 +2,70 @@ package com.example.dutmaintanenceapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class profile extends AppCompatActivity {
-    private ImageView mnu;
-    private Button editprof;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private TextView firstNameTextView, lastNameTextView, emailTextView, dobTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
 
-        mnu = findViewById(R.id.menu);
-        editprof = findViewById(R.id.edit_profile_button);
-        mnu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create a PopupMenu
-                PopupMenu popupMenu = new PopupMenu(profile.this, mnu);
-                popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        firstNameTextView = findViewById(R.id.first_name);
+        lastNameTextView = findViewById(R.id.last_name);
+        emailTextView = findViewById(R.id.email);
 
-                // Set item click listener for the menu items
-                mnu.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        PopupMenu popupMenu = new PopupMenu(profile.this, mnu);
-                        popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
+        // Fetch and display user's information
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            DocumentReference userRef = db.collection("users").document(currentUser.getEmail());
+            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()) {
+                        String firstName = documentSnapshot.getString("firstname");
+                        String lastName = documentSnapshot.getString("surname");
+                        String email = documentSnapshot.getId(); // This will be the user's email
+                        Long timestamp = documentSnapshot.getLong("timestamp");
 
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                // Handle menu item clicks
-                                int itemId = item.getItemId();
-                                if (itemId == R.id.account) {
-                                    Toast.makeText(getApplicationContext(), "Account", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), profile.class);
-                                    startActivity(intent);
-                                    return true;
-                                } else if (itemId == R.id.faultyhistory) {
-                                    Toast.makeText(getApplicationContext(), "History", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), history.class);
-                                    startActivity(intent);
-                                    return true;
-                                }
-                                else if (itemId == R.id.logfaulty) {
-                                    Toast.makeText(getApplicationContext(), "Log Faulty", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), report.class);
-                                    startActivity(intent);
-                                    return true;
-                                } else if (itemId == R.id.pendingfault) {
-                                    Toast.makeText(getApplicationContext(), "Faulty Queue", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), view_issue.class);
-                                    startActivity(intent);
-                                    return true;
-                                } else if (itemId == R.id.signout) {
-                                    Toast.makeText(getApplicationContext(), "You have been Logged out", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), Login.class);
-                                    startActivity(intent);
-                                    return true;
-                                }
-                                return false;
-                            }
-                        });
+                        firstNameTextView.setText(firstName);
+                        lastNameTextView.setText(lastName);
+                        emailTextView.setText(email);
 
-                        // Show the PopupMenu
-                        popupMenu.show();
                     }
-                });
-
-                // Show the PopupMenu
-                popupMenu.show();
-            }
-        });
-
-        editprof.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Updating profile...",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), edit_profile.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(profile.this, "Failed to fetch user's information", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

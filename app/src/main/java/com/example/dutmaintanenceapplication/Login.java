@@ -63,9 +63,15 @@ public class Login extends AppCompatActivity {
         loginB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String userEmail = email.getText().toString().trim();
+                String userPassword = password.getText().toString().trim();
+
+                if (userEmail.isEmpty() || userPassword.isEmpty()) {
+                    Toast.makeText(Login.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 progressBar.setVisibility(View.VISIBLE);
-                String userEmail = String.valueOf(email.getText());
-                String userPassword = String.valueOf(password.getText());
 
                 // Attempt to sign in with Firebase authentication
                 mAuth.signInWithEmailAndPassword(userEmail, userPassword)
@@ -106,6 +112,7 @@ public class Login extends AppCompatActivity {
                         });
             }
         });
+
 
     }
 

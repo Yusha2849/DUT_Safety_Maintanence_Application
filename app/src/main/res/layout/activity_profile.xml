@@ -16,8 +16,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:src="@drawable/dut_user2"/>
-        <!-- android:src="@drawable/default_profile_pic"  -->
-        <!-- Need default profile pic -->
+    <!-- android:src="@drawable/default_profile_pic"  -->
+    <!-- Need default profile pic -->
     <TextView
         android:id="@+id/profile"
         android:layout_width="wrap_content"
@@ -31,6 +31,17 @@
         android:textColor="@color/black"
         android:textStyle="bold" />
 
+    <!-- Titles for each set of information -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="First Name"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
     <TextView
         android:id="@+id/first_name"
         android:layout_width="wrap_content"
@@ -39,6 +50,16 @@
         android:text="First name"
         android:fontFamily="@font/poppins_regular"
         android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Last Name"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="20sp"
         android:textColor="@color/black"/>
 
     <TextView
@@ -52,6 +73,16 @@
         android:textColor="@color/black"/>
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Email"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
+    <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,27 +91,6 @@
         android:fontFamily="@font/poppins_regular"
         android:textSize="16sp"
         android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/DOB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Date of birth"
-        android:fontFamily="@font/poppins_regular"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
-
-    <Button
-        android:id="@+id/edit_profile_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:backgroundTint="@color/button_purple"
-        android:text="Edit Profile" />
-
 
 
 </LinearLayout>
