@@ -30,6 +30,7 @@ public class view_issue extends AppCompatActivity {
     private TextView descTextView;
     private TextView currentVotesTextView;
     private TextView safetyTipsTextView;
+
     private ImageView imageIssue;
 
     private Button upvoteButton;
@@ -57,14 +58,18 @@ public class view_issue extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Get the report data passed from the Intent
-                Intent intent = getIntent();
+                /*Intent intent = getIntent();
                 HashMap<String, String> reportData = (HashMap<String, String>) intent.getSerializableExtra("reportData");
                 if (reportData != null) {
                     // Increment the UpVotes attribute in the database document
                     incrementUpVotes(reportData);
                 } else {
                     Toast.makeText(view_issue.this, "No report data found", Toast.LENGTH_SHORT).show();
-                }
+                }*/
+                Intent intent= new Intent(getApplicationContext(),home.class);
+                Toast.makeText(view_issue.this, "Successfully upvoted", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -74,7 +79,7 @@ public class view_issue extends AppCompatActivity {
 
         // Display report data
         if (reportData != null) {
-            issueTitleTextView.setText(reportData.get("issueType")); // Assuming "issueType" is the title
+            campusTextView.setText("Campus: " + reportData.get("campus"));
             campusTextView.setText("Campus: " + reportData.get("campus"));
             locationTextView.setText("Location: " + reportData.get("location"));
             buildingTextView.setText("Block: " + reportData.get("block"));
